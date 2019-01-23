@@ -21,15 +21,20 @@ public class UserService {
 	}
 	
 	public User findById(String id) {
-		User user = repo.findOne(id);
+		User user = repo.findOne(id);		
 		if (user == null) {
-			throw new ObjectNotFoundException("Objeto não encontrado";);
+			throw new ObjectNotFoundException("Objeto não encontrado");
 		}
 		return user;
 	}
 	
 	public User insertUser(User obj) {
 		return repo.insert(obj);
+	}
+	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
 	}
 	
 	public User fromDTO(UserDTO objDto) {
